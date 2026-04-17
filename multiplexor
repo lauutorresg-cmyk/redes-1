@@ -1,0 +1,32 @@
+% multiplexor de 3 enlacen  (a,b,c) y los canales deben ser digitales 
+clc;
+clear;
+
+% Entradas digitales 
+A = [1 0 1 0 1 0 1 0];
+B = [0 0 1 1 0 0 1 1];
+C = [1 1 0 0 1 1 0 0];
+
+% Señales de selección
+S1 = [0 0 1 1 0 0 1 1];
+S0 = [0 1 0 1 0 1 0 1];
+
+% Inicializar salida
+Y = zeros(size(A));
+
+% Multiplexor
+for i = 1:length(A)
+    if S1(i)==0 && S0(i)==0
+        Y(i) = A(i);
+    elseif S1(i)==0 && S0(i)==1
+        Y(i) = B(i);
+    elseif S1(i)==1 && S0(i)==0
+        Y(i) = C(i);
+    else
+        Y(i) = 0; % caso no usado
+    end
+end
+
+% Mostrar resultados
+disp('Salida multiplexada:');
+disp(Y);
